@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from '@mui/material'
+import React, { Fragment } from 'react'
+import { ResponsiveAppBar } from './components/ResponsiveAppBar'
+import { EnviarInvitacion } from './components/elements/EnviarInivtacion'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App() {
+
+    return (
+        <Fragment>
+            <ResponsiveAppBar />
+            <Container maxWidth='sm'>
+                <EnviarInvitacion />
+            </Container>
+        </Fragment>
+    )
 }
 
-export default App;
+/*
+            <TextField type="time" label="Hora"></TextField>
+            <Grid container spacing={2} justifyItems="center" style={{margin:'10px'}}>
+                <Grid item xs={3} sm={6}><Paper elevation={6} style={{height:'75px', width:'100%'}} /></Grid>
+                <Grid item xs={3} sm={6}><Paper style={{height:'75px', width:'100%'}} /></Grid>
+            </Grid>
+*/

@@ -1,0 +1,122 @@
+:root {
+    --blanco: #EBEBEB;
+    --verde: #6FEC82;
+    --rojo: #FF101F;
+    --azul-claro: #2251BF;
+    --azul-oscuro: #103C89;
+    --filter: invert(100%) sepia(1%) saturate(162%) hue-rotate(145deg) brightness(114%) contrast(84%);
+}
+
+body {
+    color: var(--blanco);
+    background-color: var(--azul-oscuro);
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    height: 50px;
+    filter: var(--filter);
+}
+
+.autocomplete {
+    width: 100% !important;
+    padding-top: 5px;
+}
+
+.text-fields {
+    background-color: var(--azul-claro);
+    border-radius: 5px 5px 0 0;
+}
+
+.text-fields label {
+    color: var(--blanco);
+}
+
+.text-fields input {
+    color: var(--blanco);
+}
+
+.button-icon {
+    color: var(--blanco);
+}
+
+.Mui-selected {
+    color: var(--blanco) !important;
+    background-color: var(--azul-claro) !important;
+}
+
+.card-days {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.days-group {
+    width: 100%;
+}
+
+#day {
+    color: var(--blanco);
+    border-color: var(--blanco);
+    flex: 1;
+}
+
+#card {
+    background-color: var(--azul-oscuro);
+    width: fit-content;
+}
+
+.card-hour {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: var(--filter);
+}
+
+.arrow-icon {
+    filter: var(--filter) !important;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase {
+    color: var(--rojo) !important;
+}
+
+.Mui-checked{
+    color: var(--verde) !important;
+}
+
+.section {
+    padding: 20px 0 10px 0;
+}
+
+.card-send {
+    margin-bottom: 20px;
+    float: right;
+}
+
+#button-send {
+    background-color: var(--verde);
+    color: black;
+}
+
+.avatar {
+    background-color: var(--azul-oscuro) !important;
+}
+
+.app-bar {
+    background-color: var(--azul-claro) !important;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .card-days {
+      width: 100px !important;
+    }
+}
+
+/*
+THATS WHY YOU USE IDs!!! ID > CLASS
+Now i can override material without !important
+*/
