@@ -12,11 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ReactLogo from '../Screenshot_2021-10-07_184334.svg'
+import { Link } from '@mui/material';
 
-const pages = ['Enviar invitación', 'Ver invitación'];
+const pages = ['crear', 'ver'];
 const settings = ['Cerrar sesión'];
 
 export function ResponsiveAppBar() {
+
+  var user = 'Mock Test User'
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -77,7 +80,7 @@ export function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link href={ "/" + page } textAlign="center" >{page}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -86,6 +89,7 @@ export function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+                href={ "/" + page }
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -98,7 +102,7 @@ export function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar className='avatar' {...stringAvatar('Kent Dodds Mall')} />
+                <Avatar className='avatar' {...stringAvatar(user)} />
               </IconButton>
             </Tooltip>
             <Menu

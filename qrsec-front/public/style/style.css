@@ -68,11 +68,12 @@ body {
 
 .card-hour {
     padding: 10px;
-    vertical-align: middle;
+    padding-top: 0;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator{
     filter: var(--filter);
+    font-size: x-large;
 }
 
 .arrow-icon {
@@ -87,7 +88,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     color: var(--verde) !important;
 }
 
-.section {
+.custom-component {
     padding: 20px 0 10px 0;
 }
 
@@ -107,6 +108,11 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 
 .app-bar {
     background-color: var(--azul-claro) !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
 }
 
 

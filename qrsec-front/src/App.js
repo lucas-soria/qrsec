@@ -1,7 +1,8 @@
 import { Container } from '@mui/material'
 import React, { Fragment } from 'react'
 import { ResponsiveAppBar } from './components/ResponsiveAppBar'
-import { EnviarInvitacion } from './components/elements/EnviarInivtacion'
+import { EnviarInvitacion } from './components/pages/SendInvite'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export function App() {
 
@@ -9,7 +10,12 @@ export function App() {
         <Fragment>
             <ResponsiveAppBar />
             <Container maxWidth='sm'>
-                <EnviarInvitacion />
+                <BrowserRouter>
+                    <Routes>
+                            <Route path="/ver" element={ <div>ROTO</div> } />
+                            <Route path="/crear" element={ <EnviarInvitacion /> } />
+                    </Routes>
+                </BrowserRouter>
             </Container>
         </Fragment>
     )
