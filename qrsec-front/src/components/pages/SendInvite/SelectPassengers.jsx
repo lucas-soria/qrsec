@@ -1,10 +1,10 @@
 import { Card, TextField, Typography } from '@mui/material'
 import React from 'react'
 
-export function SelectPassangers( { setPassangers } ) {
+export function SelectPassengers( { setPassengers } ) {
 
     const handlePassangers = (event) => {
-        setPassangers(event.target.value)
+        setPassengers(event.target.value)
     }
 
     return (

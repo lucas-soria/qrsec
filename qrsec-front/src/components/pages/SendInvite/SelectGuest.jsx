@@ -1,19 +1,38 @@
 import { ArrowDropDown } from '@mui/icons-material';
 import { Autocomplete, Card, TextField, Typography } from '@mui/material';
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
+import { getGuests } from '../../../Reducers';
 
 
 export function SelectGuest( { guest, setGuest } ) {
 
     const agregar = "Agregar invitado"
 
-    const guests = [
-        {firstName:'Peter', lastName:'Parker', telefono:39823893},
-        {firstName:'Bruce', lastName:'Banner', telefono:39823893},
-        {firstName:'Miles', lastName:'Morales', telefono:39823893}
-    ];
+    const [open, setOpen] = React.useState(false);
 
-    const getList = (guests) => [{name: agregar}, ...guests.map( guest => ({name: guest.firstName + " " + guest.lastName}))]
+    const [options, setOptions] = React.useState([]);
+
+    const loading = open && options.length === 0;
+  
+    useEffect(() => {
+  
+      if (!loading) {
+        return undefined;
+      }
+  
+      (async () => {
+        const guests = await getGuests();
+        setOptions([{name: agregar}, ...guests.map( guest => ({...guest, name: guest.firstName + " " + guest.lastName}))]);
+      })();
+  
+    }, [loading]);
+  
+    useEffect(() => {
+      if (!open) {
+        setOptions([]);
+      }
+    }, [open]);
+
 
     const handleSelect = (event, guest=undefined) => {
         if (typeof(guest) != "undefined") {
@@ -33,8 +52,16 @@ export function SelectGuest( { guest, setGuest } ) {
                     <Autocomplete
                         popupIcon={<ArrowDropDown className='arrow-icon' />}
                         blurOnSelect
+                        open={open}
+                        onOpen={() => {
+                          setOpen(true);
+                        }}
+                        onClose={() => {
+                          setOpen(false);
+                        }}
                         clearOnEscape
-                        options={ getList(guests) }
+                        options={options}
+                        loading={loading}
                         isOptionEqualToValue={(option, value) => option.name === value.name}
                         getOptionLabel={ (option) => option.name }
                         onChange={ handleSelect }

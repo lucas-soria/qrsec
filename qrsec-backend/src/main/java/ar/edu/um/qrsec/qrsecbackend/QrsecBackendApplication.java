@@ -11,3 +11,8 @@ public class QrsecBackendApplication {
 	}
 
 }
+
+/*
+@Query(value="{\aca query de mongo\}")
+Ej: { id_usuario: { $in: seguidos } }
+ */
