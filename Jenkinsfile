@@ -1,10 +1,26 @@
-#!/usr/bin/env groovy
+pipeline {
 
-node {
-    stage('npm install') {
-        sh "npm install"
-    }
-    stage('npm start') {
-        sh "npm start"
+    agent any
+
+    stages {
+
+        stage('build front') {
+            steps {
+                echo 'build front'
+            }
+        }
+
+        stage('build back') {
+            steps {
+                echo 'build back'
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                echo 'deploying'
+            }
+        }
+
     }
 }
