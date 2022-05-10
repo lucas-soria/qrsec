@@ -6,6 +6,7 @@ const guest_url = base_url + "/guest"
 export const createInvite = async( invite ) =>{
 
     const response = await fetch(invite_url, {
+        mode: 'cors',
         method: 'POST',
         body: JSON.stringify(invite),
         headers: {
@@ -21,6 +22,7 @@ export const createInvite = async( invite ) =>{
 export const getInvite = async( id ) => {
 
     const response = await fetch(invite_url + id, {
+        mode: 'cors',
         method: 'GET',
         headers: {
             'Content-Type': "application/json",
@@ -34,6 +36,7 @@ export const getInvite = async( id ) => {
 export const getGuests = async() => {
 
     const response = await fetch(guest_url, {
+        mode: 'cors',
         method: 'GET',
         headers: {
             'Content-Type': "application/json",

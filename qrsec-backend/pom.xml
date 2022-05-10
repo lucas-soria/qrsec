@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ar.edu.um.qrsec</groupId>
 	<artifactId>qrsec-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>qrsec-backend</name>
 	<description>Proyecto Final de Grado (Tesis)</description>
 	<properties>
@@ -113,6 +113,23 @@
 							<version>RELEASE</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.2.1</version>
+				<configuration>
+					<from>
+						<image>openjdk:alpine</image>
+					</from>
+					<to>
+						<image>lucasor1a/bootifulmusic:${version}</image>
+						<auth>
+							<username>${DOCKER_REGISTRY_USER}</username>
+							<password>${DOCKER_REGISTRY_PWD}</password>
+						</auth>
+					</to>
 				</configuration>
 			</plugin>
 		</plugins>

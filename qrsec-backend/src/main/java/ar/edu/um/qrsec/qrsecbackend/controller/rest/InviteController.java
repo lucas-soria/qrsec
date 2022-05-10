@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "${qrsec.frontend}")
 @RestController
 @RequestMapping("${api.path}")
 public class InviteController {
