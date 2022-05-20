@@ -1,6 +1,7 @@
 package ar.edu.um.qrsec.qrsecbackend.service;
 
 import ar.edu.um.qrsec.qrsecbackend.model.Guest;
+import ar.edu.um.qrsec.qrsecbackend.model.Invite;
 import ar.edu.um.qrsec.qrsecbackend.repository.GuestRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,12 @@ public class GuestService {
     GuestRepository guestRepository;
 
     private static final Logger log = LoggerFactory.getLogger(InviteService.class);
+
+    public Guest save(Guest guest) {
+        log.debug("Request to save Guest : {}", guest);
+        guest = guestRepository.save(guest);
+        return guest;
+    }
 
     public List<Guest> findAll() {
         log.debug("Request to find all Guest");

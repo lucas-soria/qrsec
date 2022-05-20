@@ -1,17 +1,18 @@
 import React, { Fragment, useState } from 'react'
-import { Card, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, useTheme, useMediaQuery, Snackbar } from '@mui/material'
+import { Card, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Snackbar } from '@mui/material'
 import { AddLink, ContentCopy } from '@mui/icons-material'
-import { SelectGuest } from './SendInvite/SelectGuest'
-import { SelectDays } from './SendInvite/SelectDays'
-import { SelectHours } from './SendInvite/SelectHours'
-import { SelectMaxTime } from './SendInvite/SelectMaxTime'
-import { SelectPassengers } from './SendInvite/SelectPassengers'
-import { SwitchDrop } from './SendInvite/SwitchDrop'
-import { createInvite } from '../../Reducers'
+import { SelectGuest } from '../components/SendInvite/SelectGuest'
+import { SelectDays } from '../components/SendInvite/SelectDays'
+import { SelectHours } from '../components/SendInvite/SelectHours'
+import { SelectMaxTime } from '../components/SendInvite/SelectMaxTime'
+import { SelectPassengers } from '../components/SendInvite/SelectPassengers'
+import { SwitchDrop } from '../components/SendInvite/SwitchDrop'
+import { createInvite } from '../data/Reducers'
+import { frontUrls } from '../data/Urls'
 
-export function EnviarInvitacion() {
+export function SendInvite() {
 
-    const base_url = "http://localhost:3000/invite/"
+    const base_url = frontUrls.wholeBase + frontUrls.view
 
     const owner = "626b5a262202bfa3692aa17c"
 
@@ -32,10 +33,6 @@ export function EnviarInvitacion() {
     const [url, setUrl] = useState("")
 
     const [open, setOpen] = useState(false);
-
-    const theme = useTheme();
-
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -77,7 +74,6 @@ export function EnviarInvitacion() {
                 <Button variant='contained' id='button-send' startIcon={ <AddLink fontSize='large' /> } onClick={ handleCreate } >Generar link</Button>
             </Card>
             <Dialog
-                fullScreen={fullScreen}
                 open={open}
                 onClose={handleClose}
             >
@@ -86,16 +82,11 @@ export function EnviarInvitacion() {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        {url} <Button variant='contained' startIcon={ <ContentCopy fontSize='largge' /> } onClick={ handleCopy } >Copiar</Button>
+                        {url} <Button variant='contained' startIcon={ <ContentCopy fontSize='large' /> } onClick={ handleCopy } >Copiar</Button>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Hecho
-                    </Button>
+                    <Button variant='contained' onClick={handleClose} autoFocus>Hecho</Button>
                 </DialogActions>
             </Dialog>
             <Snackbar

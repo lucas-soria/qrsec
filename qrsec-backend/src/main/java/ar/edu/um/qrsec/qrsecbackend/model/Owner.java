@@ -18,6 +18,7 @@ public class Owner {
     private Authority authority;
     private String firstName;
     private String lastName;
+    @Indexed(unique = true)
     private String dni;
     @DocumentReference
     private Address address;

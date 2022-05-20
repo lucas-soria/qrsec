@@ -5,9 +5,7 @@ import ar.edu.um.qrsec.qrsecbackend.service.GuestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +17,12 @@ public class GuestController {
     GuestService guestService;
 
     private static final Logger log = LoggerFactory.getLogger(InviteController.class);
+
+    @PostMapping("${api.path.guest}")
+    public Guest createGuest(@RequestBody Guest guest) {
+        log.debug("REST request to save Guest : {}", guest);
+        return guestService.save(guest);
+    }
 
     @GetMapping("${api.path.guest}")
     public List<Guest> getGuests() {

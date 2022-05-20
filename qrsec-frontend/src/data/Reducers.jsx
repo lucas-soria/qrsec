@@ -1,11 +1,8 @@
-const base_url = "http://localhost:8080/api"
-const invite_url = base_url + "/invite"
-const guest_url = base_url + "/guest"
-
+import { backUrls } from './Urls'
 
 export const createInvite = async( invite ) =>{
 
-    const response = await fetch(invite_url, {
+    const response = await fetch(backUrls.invite, {
         mode: 'cors',
         method: 'POST',
         body: JSON.stringify(invite),
@@ -18,10 +15,9 @@ export const createInvite = async( invite ) =>{
     return response
 }
 
-
 export const getInvite = async( id ) => {
 
-    const response = await fetch(invite_url + id, {
+    const response = await fetch(backUrls.invite + id, {
         mode: 'cors',
         method: 'GET',
         headers: {
@@ -35,13 +31,28 @@ export const getInvite = async( id ) => {
 
 export const getGuests = async() => {
 
-    const response = await fetch(guest_url, {
+    const response = await fetch(backUrls.guest, {
         mode: 'cors',
         method: 'GET',
         headers: {
             'Content-Type': "application/json",
             'Accept': 'application/json'
         },    
+    }).then((response) => response.json())
+
+    return response
+}
+
+export const createGuest = async( guest ) =>{
+
+    const response = await fetch(backUrls.guest, {
+        mode: 'cors',
+        method: 'POST',
+        body: JSON.stringify(guest),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            }
     }).then((response) => response.json())
 
     return response

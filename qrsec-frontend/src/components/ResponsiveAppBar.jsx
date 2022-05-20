@@ -13,9 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ReactLogo from '../Screenshot_2021-10-07_184334.svg'
 import { Link } from '@mui/material';
+import { frontUrls } from '../data/Urls'
 
-const pages = ['crear', 'ver'];
-const settings = ['Cerrar sesión'];
+const pages = [['Inicio', frontUrls.base], ['Crear', frontUrls.create]];
+const settings = ['Cerrar sesión']; // TODO: hacer que cierre sesion
 
 export function ResponsiveAppBar() {
 
@@ -79,26 +80,25 @@ export function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link href={ "/" + page } textAlign="center" >{page}</Link>
+                <MenuItem key={page[0]} onClick={handleCloseNavMenu}>
+                  <Link href={ frontUrls.base + page[1] } textAlign="center" >{page[0]}</Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <img id="logo" src={ReactLogo} alt="React Logo" />
+          <a href={ frontUrls.base } ><img id="logo" src={ReactLogo} alt="React Logo" /></a>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                href={ "/" + page }
-                key={page}
+				<Button
+                href={ frontUrls.base + page[1] }
+                key={page[0]}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
+				>
+                {page[0]}
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
