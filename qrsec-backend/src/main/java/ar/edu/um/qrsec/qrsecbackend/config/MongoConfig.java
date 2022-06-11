@@ -18,4 +18,5 @@ public class MongoConfig implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         mappingMongoConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
     }
+
 }

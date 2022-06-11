@@ -14,13 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import ReactLogo from '../Screenshot_2021-10-07_184334.svg'
 import { Link } from '@mui/material';
 import { frontUrls } from '../data/Urls'
+import jwtDecode from 'jwt-decode';
 
-const pages = [['Inicio', frontUrls.base], ['Crear', frontUrls.create]];
+const pages = [['Inicio', ""], ['Crear', frontUrls.create]];
 const settings = ['Cerrar sesión']; // TODO: hacer que cierre sesion
 
 export function ResponsiveAppBar() {
+  
+  var token = localStorage.getItem('access_token')
 
-  var user = 'Mock Test User'
+  var decoded = !!token ? jwtDecode(token) : false
+
+  var user = !!decoded ? [decoded.first_name, decoded.last_name] : ['', '']
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -39,11 +44,13 @@ export function ResponsiveAppBar() {
   };
 
   const handleCloseUserMenu = () => {
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("refresh_token")
     setAnchorElUser(null);
   };
 
   const stringAvatar = (name) => {
-    return {children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`};
+    return {children: `${name[0][0]}${name[1][0]}`};
   }
 
   return (
@@ -99,6 +106,7 @@ export function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
+          {!!decoded && (
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -123,11 +131,11 @@ export function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <a href={"/signin"}><Typography variant='text' textAlign="center">{setting}</Typography></a>
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box>)}
         </Toolbar>
       </Container>
     </AppBar>

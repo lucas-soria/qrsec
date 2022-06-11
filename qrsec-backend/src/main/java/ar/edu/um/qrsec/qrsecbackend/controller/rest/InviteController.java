@@ -1,9 +1,8 @@
 package ar.edu.um.qrsec.qrsecbackend.controller.rest;
 
-import ar.edu.um.qrsec.qrsecbackend.model.Invite;
+import ar.edu.um.qrsec.qrsecbackend.domain.model.Invite;
 import ar.edu.um.qrsec.qrsecbackend.service.InviteService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.path}")
+@Slf4j
 public class InviteController {
 
     @Autowired
     InviteService inviteService;
-
-    private static final Logger log = LoggerFactory.getLogger(InviteController.class);
 
     @PostMapping("${api.path.invite}")
     public Invite createInvite(@RequestBody Invite invite) {

@@ -1,14 +1,18 @@
 export const frontUrls = {
     base: "/",
-    wholeBase: "http://localhost:3000/",
-    register: "signup/",
-    login: "signin/",
+    wholeBase: process.env.REACT_APP_WHOLE_FRONTEND_BASE,
+    signup: "signup/",
+    signin: "signin/",
     create: "create/",
-    view: "invite/view/"
+    view: "invite/view/",
+    scan: "scan/"
 }
 
 export const backUrls = {
-    base : 'http://localhost:8080/api',
-    invite : 'http://localhost:8080/api/invite',
-    guest : 'http://localhost:8080/api/guest'
+    base : process.env.REACT_APP_WHOLE_BACKEND_BASE,
+    invite : 'invites/',
+    guest : 'guests/',
+    user : 'users/',
+    login : 'login',
+    refreshToken : 'token/refresh'
 }

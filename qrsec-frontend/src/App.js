@@ -5,30 +5,32 @@ import { SendInvite } from './pages/SendInvite'
 import { ShowInvite } from './pages/ShowInvite'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { frontUrls } from './data/Urls'
+import { ScanInvite } from './pages/ScanInvite'
+import { SignIn } from './pages/SignIn'
+import { ProtectedRoutes } from './components/ProtectedRoutes'
 
 export function App() {
+
+    // var token = localStorage.getItem("access_token")
+    
+    // var user_authorities = !!token ? jwtDecode(token).authorities : []
 
     return (
         <Fragment>
             <ResponsiveAppBar />
             <Container maxWidth='sm'>
                 <BrowserRouter>
-                    <Routes>                        
-                        <Route path={ frontUrls.create } element={ <SendInvite /> } />
+                    <Routes>
+                        <Route path={ frontUrls.signin } element={ <SignIn /> } />
+                        <Route path={ frontUrls.base } element={<Navigate replace to={ frontUrls.signin } />} />
                         <Route path={ frontUrls.view + ":id" } element={ <ShowInvite /> } />
-                        <Route path={ frontUrls.base } element={<Navigate replace to={ frontUrls.create } />} />
+                        <Route element={ <ProtectedRoutes /> } >
+                            <Route path={ frontUrls.create } element={ <SendInvite /> } />
+                            <Route path={ frontUrls.scan } element={ <ScanInvite /> } />
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </Container>
         </Fragment>
     )
 }
-
-/*
-            <TextField type="time" label="Hora"></TextField>
-            <Grid container spacing={2} justifyItems="center" style={{margin:'10px'}}>
-                <Grid item xs={3} sm={6}><Paper elevation={6} style={{height:'75px', width:'100%'}} /></Grid>
-                <Grid item xs={3} sm={6}><Paper style={{height:'75px', width:'100%'}} /></Grid>
-            </Grid>
-*/
-/*<Route exact path="/" element={loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />} />*/

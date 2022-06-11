@@ -1,28 +1,37 @@
-package ar.edu.um.qrsec.qrsecbackend.model;
+package ar.edu.um.qrsec.qrsecbackend.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
-@Document
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "invites")
 public class Invite {
 
     @Id
     private String id;
-    @DocumentReference()
-    private Owner owner;  // 626b5a262202bfa3692aa17c
-    @DocumentReference()
-    private Guest guest;  // 626b5ba42202bfa3692aa17e
-    private List<String> days;
+    @DocumentReference
+    @CreatedBy
+    private User owner;
+    @DocumentReference
+    private Set<Guest> guests  = new HashSet<>();
+    private Set<String> days  = new HashSet<>();
     private List<List<String>> hours;
+    @Field("max_allowed_time")
     private Integer maxTime;
     private Integer passengers;
     private Boolean drop;

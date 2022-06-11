@@ -1,0 +1,8 @@
+version: '3'
+services:
+  qrsec-backend:
+    build:
+      context: ./qrsec-backend
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080

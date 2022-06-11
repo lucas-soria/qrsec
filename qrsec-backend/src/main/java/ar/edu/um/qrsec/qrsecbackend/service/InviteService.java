@@ -1,9 +1,10 @@
 package ar.edu.um.qrsec.qrsecbackend.service;
 
-import ar.edu.um.qrsec.qrsecbackend.model.Invite;
+import ar.edu.um.qrsec.qrsecbackend.domain.model.Invite;
 import ar.edu.um.qrsec.qrsecbackend.repository.InviteRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ar.edu.um.qrsec.qrsecbackend.repository.UserRepository;
+import ar.edu.um.qrsec.qrsecbackend.security.utils.SecurityContextUserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,16 +15,19 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@Slf4j
 public class InviteService {
 
     @Autowired
     InviteRepository inviteRepository;
 
-    private static final Logger log = LoggerFactory.getLogger(InviteService.class);
+    @Autowired
+    UserRepository userRepository;
 
     public Invite save(Invite invite) {
         log.debug("Request to save Invite : {}", invite);
-        // TODO: Set owner as current logged user
+        String currentlyLoggedInUsername = new SecurityContextUserInfo().getUsername();
+        invite.setOwner(userRepository.findByUsername(currentlyLoggedInUsername).get());
         invite.setCreated(LocalDateTime.now());
         invite.setModified(invite.getCreated());
         invite = inviteRepository.save(invite);
@@ -32,8 +36,7 @@ public class InviteService {
 
     public Optional<Invite> findOne(String id) {
         log.debug("Request to find Invite : {}", id);
-        Optional<Invite> invite = inviteRepository.findById(id);
-        return invite;
+        return inviteRepository.findById(id);
     }
 
     public List<Invite> findAll() {

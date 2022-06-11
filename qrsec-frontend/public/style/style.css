@@ -110,6 +110,19 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     background-color: var(--azul-claro) !important;
 }
 
+.map-container {
+    width: 100%;
+    height: 400px;
+}
+
+#valid {
+    background-color: var(--verde);
+}
+
+#invalid {
+    background-color: var(--rojo);
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
 	-webkit-appearance: none;

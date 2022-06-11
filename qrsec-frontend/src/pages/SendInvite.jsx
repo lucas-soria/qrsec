@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Card, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Snackbar } from '@mui/material'
 import { AddLink, ContentCopy } from '@mui/icons-material'
 import { SelectGuest } from '../components/SendInvite/SelectGuest'
@@ -13,8 +13,6 @@ import { frontUrls } from '../data/Urls'
 export function SendInvite() {
 
     const base_url = frontUrls.wholeBase + frontUrls.view
-
-    const owner = "626b5a262202bfa3692aa17c"
 
     var invite = {}
 
@@ -43,15 +41,13 @@ export function SendInvite() {
     };
 
     const handleCreate = async () => {
-        invite['owner'] = {"id": owner}
-        invite['guest'] = guest
+        invite['guests'] = [guest]
         invite['days'] = days
         invite['hours'] = hours.filter( (hour) => hour.length > 0 )
         invite['maxTime'] = maxTime
         invite['passengers'] = passengers
         invite['drop'] = drop
-        var algo = await createInvite(invite)
-        setUrl(base_url + algo.id)
+        await createInvite(invite).then((createInvite) => setUrl(base_url + createInvite.id))
         handleClickOpen()
     }
 
@@ -61,6 +57,10 @@ export function SendInvite() {
         setOpenSnack(true)
         navigator.clipboard.writeText(url)
     }
+
+    useEffect(() => {
+        document.title = "QRSec - Crear invitación"
+      }, [])
 
     return (
         <Fragment>
