@@ -4,7 +4,7 @@ FROM openjdk:18-ea-11-jdk-alpine
 WORKDIR /backend
 
 # add app
-COPY ./target/qrsec-backend-v1.2.0.jar ./
+COPY ./target/qrsec-backend-1.2.0.jar .
 
 # start app
-CMD ["java", "-jar", "/qrsec-backend-v1.2.0.jar"]
+CMD ["java", "-jar", "qrsec-backend-1.2.0.jar"]
