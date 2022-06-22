@@ -6,7 +6,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /home/lucas/Documents/qrsec/qrsec-database/data:/data
+      - /home/lucas/Documents/qrsec/qrsec-database/data/db:/data/db
+      - /home/lucas/Documents/qrsec/qrsec-database/data/configdb:/data/configdb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password

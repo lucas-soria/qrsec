@@ -16,13 +16,13 @@ export function SelectDays( { days, setDays } ) {
                 <Typography variant='h6'>Días permitidos:</Typography>
                 <Card elevation={6} id='card' className='card-days'>
                     <ToggleButtonGroup className='days-group' value={ days } onChange={ handleDays } orientation={`${matches ? `horizontal` : `vertical`}`} size="small">
-                        <ToggleButton id="day" value="Lunes">Lunes</ToggleButton>
-                        <ToggleButton id="day" value="Martes">Martes</ToggleButton>
-                        <ToggleButton id="day" value="Miercoles">Miercoles</ToggleButton>
-                        <ToggleButton id="day" value="Jueves">Jueves</ToggleButton>
-                        <ToggleButton id="day" value="Viernes">Viernes</ToggleButton>
-                        <ToggleButton id="day" value="Sabado">Sabado</ToggleButton>
-                        <ToggleButton id="day" value="Domingo">Domingo</ToggleButton>
+                        <ToggleButton id="day" value="1">Lunes</ToggleButton>
+                        <ToggleButton id="day" value="2">Martes</ToggleButton>
+                        <ToggleButton id="day" value="3">Miercoles</ToggleButton>
+                        <ToggleButton id="day" value="4">Jueves</ToggleButton>
+                        <ToggleButton id="day" value="5">Viernes</ToggleButton>
+                        <ToggleButton id="day" value="6">Sabado</ToggleButton>
+                        <ToggleButton id="day" value="0">Domingo</ToggleButton>
                     </ToggleButtonGroup>
                 </Card>
             </div>
