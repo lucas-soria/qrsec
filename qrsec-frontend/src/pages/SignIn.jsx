@@ -3,6 +3,7 @@ import { Button, Card, TextField, Typography } from '@mui/material'
 import React, { Fragment, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { logIn } from '../data/Reducers'
+import { frontUrls } from '../data/Urls'
 
 export function SignIn() {
 
@@ -29,6 +30,8 @@ export function SignIn() {
         })
         if (location.state !== null) {
             navigate(location.state.from.pathname)
+        } else {
+            navigate(frontUrls.base + frontUrls.create)
         }
     }
 
